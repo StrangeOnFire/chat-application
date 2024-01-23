@@ -15,7 +15,11 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://webchatappbyayush.netlify.app",
+  methods: ["GET", "POST", "PUT"],
+  credentials:true
+}));
 
 // -----------Routes
 app.use("/auth", UserRouter);
