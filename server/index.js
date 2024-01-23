@@ -46,6 +46,9 @@ const io = new Server(server, {
 app.get("/", (req, res) => {
   res.json({ hello: "Homepage" });
 });
+app.get("/check", (req, res) => {
+  res.json({ hello: "server is running" });
+});
 
 // socket.io events-------
 io.on("connection", (socket) => {

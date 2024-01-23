@@ -1,6 +1,6 @@
 import express from "express";
 // import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { Usermodel } from "../models/user.js";
 
 const router = express.Router();
@@ -12,6 +12,7 @@ router.post("/register", async (req, res) => {
   if (user) { 
     return res.json({ message: "username already exists..!" });
   }
+  var salt = bcrypt.genSaltSync(10);
   const hashedpassword = await bcrypt.hash(password, 10);
   const newUser = new Usermodel({
     username,
